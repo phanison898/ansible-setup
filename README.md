@@ -38,17 +38,26 @@ Add host ip address like below (add as per you hosts)
 mail.example.com ansible_ssh_private_key=/home/ec2-user/secret.pem
 
 [webservers]
-foo.example.com ansible_ssh_private_key=/home/ec2-user/secret.pem
-bar.example.com ansible_ssh_private_key=/home/ec2-user/secret.pem
+foo.example.com
+bar.example.com
+
+[webservers:vars]
+ansible_user=ec2-user
+ansible_ssh_private_key=/home/ec2-user/secret.pem
 
 [dbservers]
-one.example.com ansible_ssh_private_key=/home/ec2-user/secret.pem
-two.example.com ansible_ssh_private_key=/home/ec2-user/secret.pem
-three.example.com ansible_ssh_private_key=/home/ec2-user/secret.pem
+one.example.com
+two.example.com
+three.example.com
+
+[dbservers:vars]
+ansible_user=ec2-user
+ansible_ssh_private_key=/home/ec2-user/secret.pem
 ```
 
-#### Prepare a playbook
+#### Test the configuration by running below command
 
 ```yml
-
+# ansible <hostname> -m ping
+ansible dbservers -m ping
 ```
